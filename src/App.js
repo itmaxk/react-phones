@@ -1,6 +1,30 @@
 function App() {
   return (
     <div className="wrapper clear">
+
+      <div className="overlay">
+        <div className="drawer">
+
+          <h2 className="mb-30">Корзина</h2>
+
+          <div className="cartItem d-flex align-center">
+            <div>
+              <img className="mr-15 cartItemImg" src="/img/phones/1.jpg" alt="Phone" />
+              <div style={{}}className="mr-10">
+                <p className="mb-5">Смартфон Samsung Galaxy A23 4/64GB персиковый (A235)</p>
+                <b>19 990 руб.</b>
+              </div>         
+              <div className="mt-15 d-flex align-center">
+                <button className="cartItemDelete">Удалить</button>
+              </div>  
+            </div>
+          </div>
+
+          
+
+        </div>
+      </div>
+
       <header className="d-flex justify-between align-center p-40">
         <div className="d-flex align-center">
           <img className="logo" src="/img/logo.png" alt="logo" />
@@ -23,10 +47,20 @@ function App() {
       </header>
 
       <div className="content p-40">
-        <h1 className="mb-40">Все телефоны</h1>
+        <div className="d-flex align-center justify-between mb-40">
+          <h1>Все телефоны</h1>
+          <div className="search-block d-flex">
+            <img src="/img/search.svg" alt="Search" />
+            <input placeholder="Поиск..." />
+          </div>
+        </div>
+
         
         <div className="d-flex">
           <div className="card">
+            <div className="favorite">
+              <img src="/img/heart-unliked.svg" alt="Unliked" />
+            </div>
             <img className="phone" src="/img/phones/1.jpg" alt="Phone" />
             <h5>Смартфон Samsung Galaxy A23 4/64GB персиковый (A235)</h5>
             <div className="d-flex justify-between align-center">
