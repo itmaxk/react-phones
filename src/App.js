@@ -1,20 +1,26 @@
+import React from "react";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 import Card from "./components/Card";
 
-const arr = [
-  { id: 1, name: 'Смартфон Samsung Galaxy A23 4 64GB персиковый (A235)', price: 19990, imgLink: '/img/phones/Смартфон Samsung Galaxy A23 4 64GB персиковый (A235).jpg' },
-  { id: 2, name: 'Смартфон HONOR 50 6 128GB (изумрудно-зеленый)', price: 34990, imgLink: '/img/phones/Смартфон HONOR 50 6 128GB (изумрудно-зеленый).jpg' },
-  { id: 3, name: 'Смартфон Apple iPhone 13 Pro Max 256GB небесно-голубой', price: 137990, imgLink: '/img/phones/Смартфон Apple iPhone 13 Pro Max 256GB небесно-голубой.jpg' },
-  { id: 4, name: 'Смартфон Xiaomi 12 Lite 8 128GB (черный)', price: 38990, imgLink: '/img/phones/Смартфон Xiaomi 12 Lite 8 128GB (черный).jpg' },
-];
-
 function App() {
+
+  const [items, setItems] = React.useState([]);
+  const [cartOpened, setCartOpened] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch('https://6358d235c27556d289446b05.mockapi.io/items').then(res => {
+      return res.json();
+    }).then(json => {
+      setItems(json);
+    });
+  }, [])
+
   return (
     <div className="wrapper clear">
       
-      <Drawer />
-      <Header />
+      { cartOpened && <Drawer onClose={() => setCartOpened(false)}/>  }
+      <Header onClickCart={() => setCartOpened(true)} />
 
       <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
@@ -25,10 +31,16 @@ function App() {
           </div>
         </div>
 
-        <div className="d-flex">
+        <div className="d-flex flex-wrap">
 
-          {arr.map((obj) => (
-            <Card key={obj.id} name={obj.name} price={obj.price} imgLink={obj.imgLink} onClick={() => console.log(obj)}/>
+          {items.map((obj) => (
+            <Card 
+              key={obj.id} 
+              name={obj.name} 
+              price={obj.price} 
+              imgLink={obj.imgLink} 
+              addToFavorite={() => console.log('Добавили в закладки')}
+              addToCart={() => console.log('Добавили в корзину')}/>
           ))}
 
         </div>

@@ -1,11 +1,11 @@
-function Drawer() {
+function Drawer(props) {
   return (
-    <div style={{ display: "none" }} className="overlay">
+    <div className="overlay">
       <div className="drawer">
         <h2 className="mb-30 d-flex justify-between">
           <div>Корзина</div>
           <div>
-            <button className="cartClose">Закрыть</button>
+            <button onClick={props.onClose} className="cartClose">Закрыть</button>
           </div>
         </h2>
 
